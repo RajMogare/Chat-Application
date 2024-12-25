@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +30,7 @@ const ChatBox = ({ chat, currentUser, currentChatId }) => {
           />
         ) : (
           <img
-            src={otherMembers[0].profileImage || "/assets/person.jpg"}
+            src={otherMembers?.[0]?.profileImage || "/assets/person.jpg"}
             alt="profile-photo"
             className="profilePhoto"
           />
@@ -40,7 +40,7 @@ const ChatBox = ({ chat, currentUser, currentChatId }) => {
           {chat?.isGroup ? (
             <p className="text-base-bold">{chat?.name}</p>
           ) : (
-            <p className="text-base-bold">{otherMembers[0]?.username}</p>
+            <p className="text-base-bold">{otherMembers?.[0]?.username || "Unknown User"}</p>
           )}
 
           {!lastMessage && <p className="text-small-bold">Started a chat</p>}
@@ -63,7 +63,7 @@ const ChatBox = ({ chat, currentUser, currentChatId }) => {
                 seen ? "text-small-medium text-grey-3" : "text-small-bold"
               }`}
             >
-              {lastMessage?.text}
+              {lastMessage?.text || "No messages yet"}
             </p>
           )}
         </div>
